@@ -7,7 +7,6 @@
 //
 
 #import "BezierPathRefreshControl.h"
-#import "BarItem.h"
 
 static const CGFloat kloadingIndividualAnimationTiming = 0.8;
 static const CGFloat kbarDarkAlpha = 0.4;
@@ -25,6 +24,61 @@ NSString *const startPointKey = @"startPoints";
 NSString *const endPointKey = @"endPoints";
 NSString *const xKey = @"x";
 NSString *const yKey = @"y";
+
+@interface BezierPathBarItem ()
+
+@property (nonatomic) CGPoint middlePoint;
+@property (nonatomic) CGFloat lineWidth;
+@property (nonatomic) CGPoint startPoint;
+@property (nonatomic) CGPoint endPoint;
+@property (nonatomic) UIColor *color;
+
+@end
+
+@implementation BezierPathBarItem
+
+- (instancetype)initWithFrame:(CGRect)frame startPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint color:(UIColor *)color lineWidth:(CGFloat)lineWidth
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        _startPoint = startPoint;
+        _endPoint = endPoint;
+        _lineWidth = lineWidth;
+        _color = color;
+        
+        CGPoint (^middlePoint)(CGPoint, CGPoint) = ^CGPoint(CGPoint a, CGPoint b) {
+            CGFloat x = (a.x + b.x)/2.f;
+            CGFloat y = (a.y + b.y)/2.f;
+            return CGPointMake(x, y);
+        };
+        _middlePoint = middlePoint(startPoint, endPoint);
+    }
+    return self;
+}
+
+- (void)setupWithFrame:(CGRect)rect
+{
+    self.layer.anchorPoint = CGPointMake(self.middlePoint.x/self.frame.size.width, self.middlePoint.y/self.frame.size.height);
+    self.frame = CGRectMake(self.frame.origin.x + self.middlePoint.x - self.frame.size.width/2, self.frame.origin.y + self.middlePoint.y - self.frame.size.height/2, self.frame.size.width, self.frame.size.height);
+}
+
+- (void)setHorizontalRandomness:(int)horizontalRandomness dropHeight:(CGFloat)dropHeight
+{
+    int randomNumber = - horizontalRandomness + arc4random()%horizontalRandomness*2;
+    self.translationX = randomNumber;
+    self.transform = CGAffineTransformMakeTranslation(self.translationX, -dropHeight);
+}
+
+- (void)drawRect:(CGRect)rect {
+    UIBezierPath* bezierPath = UIBezierPath.bezierPath;
+    [bezierPath moveToPoint:self.startPoint];
+    [bezierPath addLineToPoint:self.endPoint];
+    [self.color setStroke];
+    bezierPath.lineWidth = self.lineWidth;
+    [bezierPath stroke];
+}
+
+@end
 
 @interface BezierPathRefreshControl () <UIScrollViewDelegate>
 
@@ -105,7 +159,7 @@ internalAnimationFactor:(CGFloat)internalAnimationFactor{
             CGPoint startPoint = CGPointFromString(startPoints[i]);
             CGPoint endPoint = CGPointFromString(endPoints[i]);
             
-            BarItem *barItem = [[BarItem alloc] initWithFrame:self.frame startPoint:startPoint endPoint:endPoint color:color lineWidth:lineWidth];
+            BezierPathBarItem *barItem = [[BezierPathBarItem alloc] initWithFrame:self.frame startPoint:startPoint endPoint:endPoint color:color lineWidth:lineWidth];
             barItem.tag = i;
             barItem.backgroundColor=[UIColor clearColor];
             barItem.alpha = 0;
@@ -118,7 +172,7 @@ internalAnimationFactor:(CGFloat)internalAnimationFactor{
         self.barItems = [NSArray arrayWithArray:mutableBarItems];
         self.frame = CGRectMake(0, 0, width, height);
         self.center = CGPointMake(_scrollView.bounds.size.width/2, 0);
-        for (BarItem *barItem in self.barItems) {
+        for (BezierPathBarItem *barItem in self.barItems) {
             [barItem setupWithFrame:self.frame];
         }
         
@@ -189,7 +243,7 @@ internalAnimationFactor:(CGFloat)internalAnimationFactor{
 
 - (void)updateBarItemsWithProgress:(CGFloat)progress
 {
-    for (BarItem *barItem in self.barItems) {
+    for (BezierPathBarItem *barItem in self.barItems) {
         NSInteger index = [self.barItems indexOfObject:barItem];
         CGFloat startPadding = (1 - self.internalAnimationFactor) / self.barItems.count * index;
         CGFloat endPadding = 1 - self.internalAnimationFactor - startPadding;
@@ -220,19 +274,19 @@ internalAnimationFactor:(CGFloat)internalAnimationFactor{
     if (self.reverseLoadingAnimation) {
         int count = (int)self.barItems.count;
         for (int i= count-1; i>=0; i--) {
-            BarItem *barItem = [self.barItems objectAtIndex:i];
+            BezierPathBarItem *barItem = [self.barItems objectAtIndex:i];
             [self performSelector:@selector(barItemAnimation:) withObject:barItem afterDelay:(self.barItems.count-i-1)*kloadingTimingOffset inModes:@[NSRunLoopCommonModes]];
         }
     }
     else {
         for (int i=0; i<self.barItems.count; i++) {
-            BarItem *barItem = [self.barItems objectAtIndex:i];
+            BezierPathBarItem *barItem = [self.barItems objectAtIndex:i];
             [self performSelector:@selector(barItemAnimation:) withObject:barItem afterDelay:i*kloadingTimingOffset inModes:@[NSRunLoopCommonModes]];
         }
     }
 }
 
-- (void)barItemAnimation:(BarItem*)barItem
+- (void)barItemAnimation:(BezierPathBarItem*)barItem
 {
     if (self.state == BezierPathRefreshControlStateRefreshing) {
         barItem.alpha = 1;
@@ -279,7 +333,7 @@ internalAnimationFactor:(CGFloat)internalAnimationFactor{
         self.disappearProgress = 1;
     }];
 
-    for (BarItem *barItem in self.barItems) {
+    for (BezierPathBarItem *barItem in self.barItems) {
         [barItem.layer removeAllAnimations];
         barItem.alpha = kbarDarkAlpha;
     }

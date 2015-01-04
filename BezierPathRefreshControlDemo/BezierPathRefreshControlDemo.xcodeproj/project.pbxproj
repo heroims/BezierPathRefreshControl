@@ -14,7 +14,6 @@
 		5A65A8BE1A52596400193E59 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5A65A8BD1A52596400193E59 /* Images.xcassets */; };
 		5A65A8C11A52596400193E59 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A65A8BF1A52596400193E59 /* LaunchScreen.xib */; };
 		5A65A8CD1A52596400193E59 /* BezierPathRefreshControlDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A65A8CC1A52596400193E59 /* BezierPathRefreshControlDemoTests.m */; };
-		5A65A8DB1A52905700193E59 /* BarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A65A8D81A52905700193E59 /* BarItem.m */; };
 		5A65A8DC1A52905700193E59 /* BezierPathRefreshControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A65A8DA1A52905700193E59 /* BezierPathRefreshControl.m */; };
 		5A65A8DF1A5294CF00193E59 /* ZYQTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A65A8DE1A5294CF00193E59 /* ZYQTableView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		5A65A8ED1A52957F00193E59 /* BaseTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A65A8EC1A52957F00193E59 /* BaseTableView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -50,8 +49,6 @@
 		5A65A8C61A52596400193E59 /* BezierPathRefreshControlDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BezierPathRefreshControlDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A65A8CB1A52596400193E59 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5A65A8CC1A52596400193E59 /* BezierPathRefreshControlDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BezierPathRefreshControlDemoTests.m; sourceTree = "<group>"; };
-		5A65A8D71A52905700193E59 /* BarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarItem.h; sourceTree = "<group>"; };
-		5A65A8D81A52905700193E59 /* BarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarItem.m; sourceTree = "<group>"; };
 		5A65A8D91A52905700193E59 /* BezierPathRefreshControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BezierPathRefreshControl.h; sourceTree = "<group>"; };
 		5A65A8DA1A52905700193E59 /* BezierPathRefreshControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BezierPathRefreshControl.m; sourceTree = "<group>"; };
 		5A65A8DD1A5294CF00193E59 /* ZYQTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYQTableView.h; sourceTree = "<group>"; };
@@ -160,8 +157,6 @@
 		5A65A8D61A52900800193E59 /* BezierPathRefreshControl */ = {
 			isa = PBXGroup;
 			children = (
-				5A65A8D71A52905700193E59 /* BarItem.h */,
-				5A65A8D81A52905700193E59 /* BarItem.m */,
 				5A65A8D91A52905700193E59 /* BezierPathRefreshControl.h */,
 				5A65A8DA1A52905700193E59 /* BezierPathRefreshControl.m */,
 			);
@@ -283,7 +278,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5A65A8DF1A5294CF00193E59 /* ZYQTableView.m in Sources */,
-				5A65A8DB1A52905700193E59 /* BarItem.m in Sources */,
 				5A65A8B91A52596400193E59 /* ViewController.m in Sources */,
 				5A65A8B61A52596400193E59 /* AppDelegate.m in Sources */,
 				5A65A8DC1A52905700193E59 /* BezierPathRefreshControl.m in Sources */,
