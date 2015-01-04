@@ -107,17 +107,13 @@
 				5A65A8F31A529EC800193E59 /* loading.plist */,
 				D89FB3361A598B8C0091850C /* AKTA.plist */,
 				D89FB3371A598B8C0091850C /* storehouse.plist */,
+				D89FB33A1A59A48F0091850C /* BaseTableView */,
+				D89FB3351A598B280091850C /* ZYQTableView */,
 				5A65A8D61A52900800193E59 /* BezierPathRefreshControl */,
 				5A65A8B41A52596400193E59 /* AppDelegate.h */,
 				5A65A8B51A52596400193E59 /* AppDelegate.m */,
-				D89FB3351A598B280091850C /* ZYQTableView */,
-				5A65A8EB1A52957F00193E59 /* BaseTableView.h */,
-				5A65A8EC1A52957F00193E59 /* BaseTableView.m */,
 				5A65A8F51A529FAF00193E59 /* MyTableView.h */,
 				5A65A8F61A529FAF00193E59 /* MyTableView.m */,
-				5A65A8EE1A52958F00193E59 /* TableFooterV.h */,
-				5A65A8EF1A52958F00193E59 /* TableFooterV.m */,
-				5A65A8F01A52958F00193E59 /* TableFooterV.xib */,
 				5A65A8B71A52596400193E59 /* ViewController.h */,
 				5A65A8B81A52596400193E59 /* ViewController.m */,
 				5A65A8BA1A52596400193E59 /* Main.storyboard */,
@@ -171,6 +167,18 @@
 				5A65A8DE1A5294CF00193E59 /* ZYQTableView.m */,
 			);
 			name = ZYQTableView;
+			sourceTree = "<group>";
+		};
+		D89FB33A1A59A48F0091850C /* BaseTableView */ = {
+			isa = PBXGroup;
+			children = (
+				5A65A8EB1A52957F00193E59 /* BaseTableView.h */,
+				5A65A8EC1A52957F00193E59 /* BaseTableView.m */,
+				5A65A8EE1A52958F00193E59 /* TableFooterV.h */,
+				5A65A8EF1A52958F00193E59 /* TableFooterV.m */,
+				5A65A8F01A52958F00193E59 /* TableFooterV.xib */,
+			);
+			name = BaseTableView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
