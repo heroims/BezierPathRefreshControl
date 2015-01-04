@@ -19,14 +19,17 @@
     [super viewDidLoad];
     MyTableView *tableV1=[[MyTableView alloc] initWithFrame:CGRectMake(0, 30, [UIScreen mainScreen].bounds.size.width/2., 300) plist:@"loading"];
     tableV1.backgroundColor=[UIColor blackColor];
+    tableV1.footerView.backgroundColor=[UIColor whiteColor];
     [self.view addSubview:tableV1];
     
     MyTableView *tableV2=[[MyTableView alloc] initWithFrame:CGRectMake(tableV1.frame.origin.x+tableV1.frame.size.width, tableV1.frame.origin.y, tableV1.frame.size.width, tableV1.frame.size.height) plist:@"storehouse"];
     tableV2.backgroundColor=[UIColor blackColor];
+    ((TableFooterV*)tableV2.footerView).aiv.activityIndicatorViewStyle=UIActivityIndicatorViewStyleWhite;
     [self.view addSubview:tableV2];
 
-    MyTableView *tableV3=[[MyTableView alloc] initWithFrame:CGRectMake(0, tableV1.frame.size.height+tableV1.frame.origin.y, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-300) plist:@"AKTA"];
+    MyTableView *tableV3=[[MyTableView alloc] initWithFrame:CGRectMake(0, tableV1.frame.size.height+tableV1.frame.origin.y, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-330) plist:@"AKTA"];
     tableV3.backgroundColor=[UIColor blackColor];
+    ((TableFooterV*)tableV3.footerView).aiv.activityIndicatorViewStyle=UIActivityIndicatorViewStyleWhite;
     [self.view addSubview:tableV3];
 
     // Do any additional setup after loading the view, typically from a nib.

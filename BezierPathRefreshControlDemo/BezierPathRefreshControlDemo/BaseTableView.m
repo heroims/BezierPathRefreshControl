@@ -130,6 +130,9 @@
 - (void) willBeginLoadingMore
 {
     TableFooterV *fv = (TableFooterV *)self.footerView;
+    fv.aiv.frame=CGRectMake((self.frame.size.width-(fv.aiv.frame.size.width+fv.lblText.frame.size.width+10))/2., fv.aiv.frame.origin.y, fv.aiv.frame.size.width, fv.aiv.frame.size.height);
+    fv.lblText.frame=CGRectMake(fv.aiv.frame.size.width+fv.aiv.frame.origin.x+10, fv.lblText.frame.origin.y, fv.lblText.frame.size.width, fv.lblText.frame.size.height);
+
     [fv.aiv startAnimating];
     
     fv.aiv.hidden=NO;
@@ -141,10 +144,12 @@
 {
     
     TableFooterV *fv = (TableFooterV *)self.footerView;
+    
     [fv.aiv stopAnimating];
     
     fv.aiv.hidden=YES;
     fv.aiv.hidden=YES;
+
     if (self.canLoadMore) {
         if (self.isEmpty) {
             fv.lblText.text = @"";
