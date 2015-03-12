@@ -52,7 +52,7 @@
     if (cell==nil) {
         cell=[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellStr"];
     }
-    cell.textLabel.text=[NSString stringWithFormat:@"%d",indexPath.row];
+    cell.textLabel.text=[NSString stringWithFormat:@"%zi",indexPath.row];
     return cell;
 }
 
